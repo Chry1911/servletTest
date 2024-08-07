@@ -1,30 +1,28 @@
 /**
  * It create a simple Dialog to show the error or other messages after an incorrect login or other operation
  */
-(function($, undefined){
-	"use strict";
-	    
-	var progname = "[srdialog] ";
+(function($, undefined) {
+    "use strict";
 
-	$.widget("sr.srdialog", {
+    var progname = "[srdialog] ";
 
+    $.widget("sr.srdialog", {
         options: {
             title: undefined,
             message: '',
             type: undefined, // can be 'info', 'success', 'error', 'warning'
             debug: false,
-			contextError : "/TestChris/index.jsp",
+            contextError: "/TestChris/index.jsp",
         },
 
         _create: function() {
             var self = this;
             if (self.options.debug) { console.log(progname + '_create'); }
-            
-            self.element.addClass('sr-dialog');
+        },
 
-            // Create the dialog content
-            self.element.append('<div class="sr-dialog-content"></div>');
-
+        _init: function() {
+            var self = this;
+            if (self.options.debug) { console.log(progname + '_init'); }
             self._update();
         },
 
@@ -37,38 +35,32 @@
             // Determine the dialog type class
             switch (self.options.type) {
                 case 'success':
-                    dialogClass = 'sr-dialog-success';
+                    dialogClass = 'modal-success';
                     break;
                 case 'error':
-                    dialogClass = 'sr-dialog-error';
+                    dialogClass = 'modal-error';
                     break;
                 case 'warning':
-                    dialogClass = 'sr-dialog-warning';
+                    dialogClass = 'modal-warning';
                     break;
                 default:
-                    dialogClass = 'sr-dialog-info';
+                    dialogClass = 'modal-info';
             }
 
-            // Set the dialog content
-            self.element.find('.sr-dialog-content').html(self.options.message);
+            // Update the modal content
+            $('#srDialogModal').removeClass('modal-success modal-error modal-warning modal-info').addClass(dialogClass);
+            $('#srDialogModalLabel').text(self.options.title);
+            $('#srDialogModalMessage').text(self.options.message);
 
-            // Add the appropriate class
-            self.element.removeClass('sr-dialog-success sr-dialog-error sr-dialog-warning sr-dialog-info')
-                .addClass(dialogClass);
+            // Show the modal
+            $('#srDialogModal').modal('show');
 
-            // Initialize the jQuery UI dialog
-            self.element.dialog({
-                title: self.options.title,
-                modal: true,
-                buttons: {
-					OK: function() {
-						//here do a control what is the type of the message, if type error redirect to login page
-                        if (self.options.type === 'error') {
-                            window.location.href = self.options.contextError;
-                        } else {
-                            $(this).dialog("close");
-                        }
-                    }
+            // Handle the OK button click
+            $('#srDialogModalOkButton').off('click').on('click', function() {
+                if (self.options.type === 'error') {
+                    window.location.href = self.options.contextError;
+                } else {
+                    $('#srDialogModal').modal('hide');
                 }
             });
         },

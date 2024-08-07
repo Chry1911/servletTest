@@ -6,24 +6,27 @@
 <meta charset="UTF-8">
 <title>Error page</title>
 <jsp:include page="common.jsp" />
-<style>
-        .sr-dialog-success .sr-dialog-content {
-            color: green;
-        }
-        .sr-dialog-error .sr-dialog-content {
-            color: red;
-        }
-        .sr-dialog-warning .sr-dialog-content {
-            color: orange;
-        }
-        .sr-dialog-info .sr-dialog-content {
-            color: blue;
-        }
-    </style>
 </head>
 <body>
-    <div id="dialog"></div>
-   
+   <!-- Bootstrap Modal Structure -->
+    <div class="modal fade" id="srDialogModal" tabindex="-1" role="dialog" aria-labelledby="srDialogModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="srDialogModalLabel">Message</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p id="srDialogModalMessage"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="srDialogModalOkButton">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
     
     <script>
         $(document).ready(function() {

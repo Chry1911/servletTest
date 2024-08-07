@@ -314,3 +314,28 @@ li a {
     margin: 0 auto;
     margin-top:20px;
 }
+ .sr-dialog-success .sr-dialog-content {
+     color: green;
+ }
+ .sr-dialog-error .sr-dialog-content {
+     color: red;
+ }
+ .sr-dialog-warning .sr-dialog-content {
+     color: orange;
+ }
+ .sr-dialog-info .sr-dialog-content {
+     color: blue;
+ }
+ 
+ .modal-success .modal-header, .modal-success .modal-footer {
+      background-color: green;
+  }
+  .modal-error .modal-header, .modal-error .modal-footer {
+      background-color: red;
+  }
+  .modal-warning .modal-header, .modal-warning .modal-footer {
+      background-color: orange;
+  }
+  .modal-info .modal-header, .modal-info .modal-footer {
+      background-color: blue;
+  }

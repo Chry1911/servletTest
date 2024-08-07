@@ -1,8 +1,9 @@
+
 /**
- * 
+ * Dialog helper functions
  */
 var showDialog = function(params) {
-    $('#dialog').srdialog(params);
+    $('#srDialogModal').srdialog(params);
 };
 
 // Specific function to show error dialogs
@@ -15,25 +16,25 @@ var showErrorDialog = function(message) {
 };
 
 var showWarningDialog = function(message) {
-	showDialog({
-		message: message || 'Please be careful, something here is dangerous.',
-		type: 'warning',
-		debug: true
-	})
+    showDialog({
+        message: message || 'Please be careful, something here is dangerous.',
+        type: 'warning',
+        debug: true
+    });
 };
 
 var showInfoDialog = function(message) {
-	showDialog({
-		message: message || 'This is only an alert.',
-		type : 'info',
-		debug: true
-	})
+    showDialog({
+        message: message || 'This is only an alert.',
+        type: 'info',
+        debug: true
+    });
 };
 
 var showSuccessDialog = function(message) {
-	showDialog({
-		message: message || 'Success man, be the best.',
-		type: 'success',
-		debug: true
-	})
+    showDialog({
+        message: message || 'Success man, be the best.',
+        type: 'success',
+        debug: true
+    });
 };
